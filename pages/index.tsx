@@ -1,8 +1,11 @@
-import Head from "next/head";
 import Image from "next/image";
+import First from "../components/first";
+import Second from "../components/second";
+import Third from "../components/third";
+import Navigation from "../components/navigation";
 
-export default function Home() {
-  if (true) {
+export default function Index({ underConstruction }) {
+  if (underConstruction == true) {
     return (
       <div className="flex h-screen justify-center items-center">
         <div className="text-2xl animate-bounce ">
@@ -17,12 +20,21 @@ export default function Home() {
       </div>
     );
   }
-  else
-  {
-    return (
-      <p>itt</p>
-    );
-  }
 
-
+  return (
+    <div>
+      <Navigation />
+      <First />
+      <Second />
+      <Third />
+    </div>
+  );
 }
+
+export const getStaticProps = async () => {
+  return {
+    props: {
+      underConstruction: process.env.IN_PROGRESS,
+    },
+  };
+};
